@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
 
+import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 contract Lottery {
     uint totalPrize;
     uint ticketPrice;
     address public manager;
     address [] public players;
 
-    // Default Constructor
     constructor(uint _ticketPrice) payable  {
         manager = msg.sender;
         totalPrize = msg.value;
         ticketPrice = _ticketPrice;
     }
+
     event correctpaymentRecieved(uint);
 
-    // Entering the player to the lottery
     function enter() public payable {
         require(msg.value == ticketPrice, "Incorrect amount");
         players.push(msg.sender);
