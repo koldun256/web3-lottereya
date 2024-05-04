@@ -1,0 +1,86 @@
+<body>
+<style>
+body {
+  background-color: #2D353B;
+  color: #D3C6AA;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-btn {
+  display: none;
+}
+
+#join-btn {
+  padding: 10px;
+  background-color: #A7C080;
+  color: #2D353B;
+  border-radius: 10px;
+  border: none;
+}
+
+.container {
+  background-color: #343F44;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px white;
+}
+
+#form-input-enter-payable {
+  display: none;
+}
+</style>
+  <script>
+    function refresh(value) {
+      document.querySelector(`#form-${value} button`).click()
+    }
+
+    setInterval(() => refresh('prizePool'), 1000)
+
+    async function main() {
+      refresh('ticketPrice')
+      refresh('prizePool')
+      document.getElementById('join-btn').onclick = () => {
+        const ticketPrice = parseInt(document.getElementById('form-output-ticketPrice-0').innerText)
+        document.getElementById('form-input-enter-payable').value = ticketPrice
+      }
+    }
+
+    setTimeout(main, 200)
+  </script>
+
+  <div class="container">
+    <form id="form-ticketPrice" class="autoreq">
+      <button type="button" data-form-name="ticketPrice" class="request-btn"> Request </button>
+    </form>
+
+    <form id="form-prizePool" class="autoreq">
+      <button type="button" data-form-name="prizePool" class="request-btn"> Request </button>
+    </form>
+
+    <p>
+      Цена билета
+      <span id="form-output-ticketPrice-0" data-form-name="ticketPrice" data-field-type="uint256">uint256</span>
+    </p>
+
+    <p>
+      Призовой пул
+      <span id="form-output-prizePool-0" data-form-name="prizePool" data-field-type="uint256">uint256</span>
+    </p>
+
+    <form id="form-enter">
+      <input type="text" placeholder="Цена" id="form-input-enter-payable" data-form-name="enter" data-field-type="uint256" />
+      <div>
+        <button type="button" data-form-name="enter" id="join-btn">
+          Играть!
+        </button>
+      </div>
+    </form>
+  </div>
+</body>

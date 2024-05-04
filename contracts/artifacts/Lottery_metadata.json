@@ -9,28 +9,17 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_lotteryFee",
+						"name": "_endsAfter",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticketPrice",
 						"type": "uint256"
 					}
 				],
 				"stateMutability": "payable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "have",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					}
-				],
-				"name": "OnlyCoordinatorCanFulfill",
-				"type": "error"
 			},
 			{
 				"anonymous": false,
@@ -46,32 +35,17 @@
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "winner",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "prize",
-						"type": "uint256"
-					}
-				],
-				"name": "LotteryWinner",
-				"type": "event"
+				"stateMutability": "payable",
+				"type": "fallback"
 			},
 			{
 				"inputs": [],
-				"name": "callbackGasLimit",
+				"name": "endsAfter",
 				"outputs": [
 					{
-						"internalType": "uint32",
+						"internalType": "uint256",
 						"name": "",
-						"type": "uint32"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -79,19 +53,19 @@
 			},
 			{
 				"inputs": [],
-				"name": "enterLottery",
+				"name": "enter",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "keyHash",
+				"name": "manager",
 				"outputs": [
 					{
-						"internalType": "bytes32",
+						"internalType": "address payable",
 						"name": "",
-						"type": "bytes32"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -99,67 +73,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "lastRequestId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "lotteryFee",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "lotteryOpen",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "lotteryPrize",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "numWords",
-				"outputs": [
-					{
-						"internalType": "uint32",
-						"name": "",
-						"type": "uint32"
-					}
-				],
-				"stateMutability": "view",
+				"name": "pickWinner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -182,31 +98,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "prizePool",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "requestId",
+						"name": "",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "randomWords",
-						"type": "uint256[]"
-					}
-				],
-				"name": "rawFulfillRandomWords",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "requestConfirmations",
-				"outputs": [
-					{
-						"internalType": "uint16",
-						"name": "",
-						"type": "uint16"
 					}
 				],
 				"stateMutability": "view",
@@ -214,26 +112,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "requestRandomWords",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "startLottery",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "subscriptionId",
+				"name": "ticketPrice",
 				"outputs": [
 					{
-						"internalType": "uint64",
+						"internalType": "uint256",
 						"name": "",
-						"type": "uint64"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -241,16 +125,20 @@
 			},
 			{
 				"inputs": [],
-				"name": "vrfCoordinator",
+				"name": "timenow",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -266,7 +154,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/lottery-vrf.sol": "Lottery"
+			"contracts/lottery.sol": "Lottery"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -296,12 +184,12 @@
 				"dweb:/ipfs/Qmc6jpm3k3YuJG7U2s3FWr81Vk2rdQBhdqD9sA6b8Cr9BE"
 			]
 		},
-		"contracts/lottery-vrf.sol": {
-			"keccak256": "0x37764db0572db233a9c92e4ccb1b574d716e22fc8ca7257e8b13efc94ec18967",
-			"license": "GPL-3.0",
+		"contracts/lottery.sol": {
+			"keccak256": "0x9b7ba50ce711ce439c82ec2b53be09122518ac9210fb0fec3ef667459b9466b2",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://a36b22f298cb0d8d523da25fe5f8292f4a24d28072a86aed18bf304ecc3d5423",
-				"dweb:/ipfs/QmbH8H2kro7AcJCyF1omEeVQ4AMctSh5m4TKzgggueCL4h"
+				"bzz-raw://86a242ceb48d8a7350580e137e84af2e894556b8d9238fe6365cd71e3f9787e4",
+				"dweb:/ipfs/QmRUEtrmGbxbbf8MKtFNDiH4GgbnhCMoP9JyQoUF5dJkDE"
 			]
 		}
 	},

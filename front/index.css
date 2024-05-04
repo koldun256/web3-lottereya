@@ -1,0 +1,29 @@
+body {
+  background-color: #2D353B;
+  color: #D3C6AA;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.request-btn {
+  display: none;
+}
+
+#join-btn {
+  padding: 10px;
+  background-color: #A7C080;
+  color: #2D353B;
+  border-radius: 10px;
+}
+
+.container {
+  background-color: #343F44;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#form-input-enter-payable {
+  display: none;
+}
